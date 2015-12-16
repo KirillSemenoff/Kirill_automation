@@ -34,6 +34,7 @@ public class BaseClass {
         public static ViewPostsPage viewPostsPage = new ViewPostsPage(getCurrentDriver());
 
 
+
     protected static WebDriver getCurrentDriver (){
         if (driver == null){
             driver = new FirefoxDriver();

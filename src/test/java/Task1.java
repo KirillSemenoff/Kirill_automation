@@ -8,8 +8,10 @@ import org.apache.http.util.Args;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import core.ApplicationSettings;
 
-public class Task1 {
+
+public class Task1  {
 
     protected static WebDriver driver;
 
@@ -19,12 +21,12 @@ public class Task1 {
 
         driver=new FirefoxDriver();
 
-        driver.navigate().to("http://localhost:43198/wp-login.php");
+        driver.navigate().to(ApplicationSettings.basicURL);
         driver.findElement(By.id("user_login")).clear();
         driver.findElement(By.id("user_login")).sendKeys("Kirill");
         driver.findElement(By.id("user_pass")).clear();
-        driver.findElement(By.id("user_pass")).sendKeys("3B*nPyIvTTKdlNb2Zm");
-        driver.findElement(By.className("submit")).click();
+        driver.findElement(By.id("user_pass")).sendKeys("password");
+        driver.findElement(By.xpath("//input[@id=\"wp-submit\"]")).click();
 
         driver.close();
         driver.quit();

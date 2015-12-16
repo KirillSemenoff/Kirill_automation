@@ -20,16 +20,16 @@ public class Task2 {
 
 
     protected static WebDriver driver;
-    String postBody= "One upon a time lived Vadim who provided Selenium's course";
+    String postBody= "Once upon a time lived Vadim who provided Selenium's course";
     String expression;
     WebElement temp;
     public void  method2() {
 
         driver=new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        driver.navigate().to("http://localhost:43198/wp-login.php");
+        driver.navigate().to("http://localhost:39015/wp-login.php");
         driver.findElement(By.xpath("//label[@for=\"user_login\"]")).sendKeys("Kirill");
-        driver.findElement(By.xpath("//label[@for=\"user_pass\"]")).sendKeys("3B*nPyIvTTKdlNb2Zm");
+        driver.findElement(By.xpath("//label[@for=\"user_pass\"]")).sendKeys("password");
         driver.findElement(By.xpath("//input[@type=\"submit\"]")).click();
         driver.findElement(By.xpath("//a[@href=\"edit.php\"]//div[@class=\"wp-menu-name\"]")).click();
         driver.findElement(By.xpath("//a[@href=\"post-new.php\"]")).click();
