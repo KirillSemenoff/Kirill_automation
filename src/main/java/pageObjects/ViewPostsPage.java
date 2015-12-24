@@ -14,6 +14,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 public class ViewPostsPage extends WebDriverExtension {
 
 
@@ -25,15 +27,14 @@ public class ViewPostsPage extends WebDriverExtension {
     }
 
     public boolean CheckPostPresent (String string){
-         By postxpath = By.xpath("//*[@class=\"row-title\" and @title=\"Редактировать <<"+string+">>\"]");
-        System.out.println(postxpath);
+         By postxpath = By.xpath("//*[text()=\""+string+"\"]");
+        //System.out.println(postxpath);
         try {
-            driver.findElement(postxpath);
-            return false;
-        } catch (NoSuchElementException e) {
+           driver.findElement(postxpath);
             return true;
+        } catch (NoSuchElementException e) {
+            return false;
         }
     }
-
 
     }

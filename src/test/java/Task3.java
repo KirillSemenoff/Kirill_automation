@@ -3,7 +3,11 @@
  */
 
 import java.lang.String;
+import core.ApplicationSettings;
 import core.BaseClass;
+import org.apache.commons.lang.RandomStringUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.PostsPage;
@@ -11,40 +15,43 @@ import pageObjects.ViewPostsPage;
 import static core.WebDriverExtension.isElementContainsText;
 
 public class Task3 extends BaseClass {
-
-   /* @Test
+    String title= RandomStringUtils.random(5);
+    String body= "Some body";
+      @Test
     public void CreatePost (){
 
         newPostPage.Open();
-        newPostPage.ProvidePostTitle("Kirill title");
+        newPostPage.ProvidePostTitle(title);
         newPostPage.ProvidePostBody("Kirill body");
         newPostPage.ClickPublishButton();
         newPostPage.ClickViewPost();
-        System.out.println(ViewPostsPage.postTitle);
-        Assert.assertTrue(isElementContainsText(ViewPostsPage.postTitle, "Kirill title"));
-
-    }*/
-
-    /**/
-    @Test
-    public void RemovePost() {
-
-        String title = "Kirill title";
-
-        new PostsPage.AllPosts();
-        PostsPage.AllPosts.Select();
-
-        new PostsPage.SpecificTitleCheckbox();
-        PostsPage.SpecificTitleCheckbox.SpecificCheck(title);
-
-        new PostsPage.DropdownMenuActions();
-        PostsPage.DropdownMenuActions.DropdownMenuSelect("trash");
-
-        new PostsPage.ApplyButton();
-        PostsPage.ApplyButton.Click();
-        viewPostsPage.CheckPostPresent(title);
-
+        Assert.assertTrue(isElementContainsText(ViewPostsPage.postTitle, title));
 
     }
+
+      @Test
+    public void EditPost (){
+
+        driver.findElement(By.xpath("//a[text()=\"Kirill_site\" and @class=\"ab-item\"]")).click();
+        postsPage.SelectAllPosts();
+       /* postsPage.SpecificCheck(title);
+        postsPage.DropdownMenuSelect("edit");
+        postsPage.ClickApply();*/
+        postsPage.MoveMouseToElement(title);
+        newPostPage.ProvidePostBody(body);
+        newPostPage.ClickPublishButton();
+
+    }
+
+
+  @Test
+    public void RemovePost() {
+
+        postsPage.SelectAllPosts();
+        postsPage.SpecificCheck(title);
+        postsPage.DropdownMenuSelect("trash");
+        postsPage.ClickApply();
+        viewPostsPage.CheckPostPresent(title);
+  }
 
 }
